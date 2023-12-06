@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "pg": "latest",
+    "prompt": "latest"
+  },
+  "devDependencies": {
+    "faker": "^5.5.3"
+  }
+}

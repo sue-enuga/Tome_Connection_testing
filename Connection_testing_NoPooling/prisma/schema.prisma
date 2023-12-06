@@ -1,0 +1,27 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider  = "cockroachdb"
+  url       = "postgresql://sue:ehFmrYdQe2nxr8-6-R4dFw@sue-test-tome-direct-mng.aws-us-east-2.cockroachlabs.cloud:26257/defaultdb?sslmode=verify-full&sslrootcert=$HOME/Library/CockroachCloud/certs/1d4d68ed-a173-461e-a522-4fbca2b062e1/sue-test-tome-direct-ca.crt&application_name=NoPoolerAppTest&connection_pool"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id    String     @id @default(uuid())
+  name  String
+  email String  
+  posts Post[]
+}
+
+model Post {
+  id         String      @id @default(uuid())
+  title      String
+  content    String
+  published  Boolean  @default(false)
+  author     User?    @relation(fields: [authorId], references: [id])
+  authorId   String?
+}
